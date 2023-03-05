@@ -12,7 +12,12 @@ class CustomsUserAdmin(UserAdmin):
                     "first_name", 
                     "last_name", 
                     "email",
-                    "turkish_id", 
+                    "house_address",
+                    "car_plate",
+                    "turkish_id",
+                    "tc_id_expiry_date",
+                    "passport_number",
+                    "passport_expiry_date",
                     "is_supporter", 
                     "gender", 
                     "language", 
@@ -38,4 +43,4 @@ class CustomsUserAdmin(UserAdmin):
             },
         ),
     )    
-    list_display = ("username", "email", "first_name", "last_name", "turkish_id", "is_supporter",)
+    list_display = ("username", "email", "first_name", "last_name", "car_plate", "house_address", "turkish_id", "tc_id_expiry_date", "passport_number", "passport_expiry_date", "is_supporter")
