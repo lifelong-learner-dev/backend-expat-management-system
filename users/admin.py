@@ -6,13 +6,15 @@ from .models import User
 class CustomsUserAdmin(UserAdmin):
     fieldsets = (
         (
-            "Profie",
+            "Profile",
             {
-                "fields": ("username", 
+                "fields": ("username",
+                    "avatar", 
                     "first_name", 
                     "last_name", 
                     "email",
                     "house_address",
+                    "company_car_model",
                     "car_plate",
                     "turkish_id",
                     "tc_id_expiry_date",
@@ -43,4 +45,4 @@ class CustomsUserAdmin(UserAdmin):
             },
         ),
     )    
-    list_display = ("username", "email", "first_name", "last_name", "car_plate", "house_address", "turkish_id", "tc_id_expiry_date", "passport_number", "passport_expiry_date", "is_supporter")
+    list_display = ("username", "email", "first_name", "last_name", "company_car_model", "car_plate", "house_address", "turkish_id", "tc_id_expiry_date", "passport_number", "passport_expiry_date", "is_supporter")
