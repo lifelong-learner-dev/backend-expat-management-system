@@ -9,7 +9,11 @@ class CustomsUserAdmin(UserAdmin):
             "Profile",
             {
                 "fields": ("username",
-                    "avatar", 
+                    "avatar",
+                    "division",
+                    "department",
+                    "position",
+                    "hq_position",
                     "first_name", 
                     "last_name", 
                     "email",
@@ -20,6 +24,8 @@ class CustomsUserAdmin(UserAdmin):
                     "tc_id_expiry_date",
                     "passport_number",
                     "passport_expiry_date",
+                    "is_manager",
+                    "is_expat",
                     "is_supporter", 
                     "gender", 
                     "language", 
@@ -45,4 +51,4 @@ class CustomsUserAdmin(UserAdmin):
             },
         ),
     )    
-    list_display = ("username", "email", "first_name", "last_name", "company_car_model", "car_plate", "house_address", "turkish_id", "tc_id_expiry_date", "passport_number", "passport_expiry_date", "is_supporter")
+    list_display = ("username", "division", "department", "position", "hq_position", "company_car_model", "car_plate", "house_address", "turkish_id", "tc_id_expiry_date", "passport_number", "passport_expiry_date", )

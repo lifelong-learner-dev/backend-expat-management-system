@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Familyresidencepermit
+from .models import Family_residence_permit
 
-@admin.register(Familyresidencepermit)
-class FamilyresidencepermitAdmin(admin.ModelAdmin):
+@admin.register(Family_residence_permit)
+class Family_residence_permitAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "expat",

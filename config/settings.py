@@ -31,7 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 CUSTOM_APPS = [
-    "common.apps.CommonConfig", "users.apps.UsersConfig", "familyresidencepermits.apps.FamilyresidencepermitsConfig",
+    "common.apps.CommonConfig", 
+    "users.apps.UsersConfig", 
+    "family_residence_permits.apps.Family_residence_permitsConfig",
+    "processes.apps.ProcessesConfig",
+    "requests.apps.RequestsConfig",
+    "green_cards.apps.Green_cardsConfig",
+    "pick_ups.apps.Pick_upsConfig",
+    "moving.apps.MovingConfig",
 ]
 
 SYSTEM_APPS = [
