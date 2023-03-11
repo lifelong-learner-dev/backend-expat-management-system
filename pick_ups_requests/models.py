@@ -20,7 +20,7 @@ class Pick_ups_request(CommonModel):
     )
 
     date = models.DateField(("Flight date"), default=date.today)
-    time = models.TimeField(("Arrival or departure time"), auto_now=True)
+    time = models.TimeField(("Arrival or departure time"), default="19:00")
 
     class DriversChoices(models.TextChoices):
         ERHAN_BEY = ("erhan_bey", "Erhan bey")
