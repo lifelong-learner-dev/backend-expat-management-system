@@ -12,8 +12,8 @@ class Pick_up(CommonModel):
         related_name="pick_ups",
     )
 
-    def total_explanations(process):
-        return process.explanations.count()
+    def total_explanations(pick_up):
+        return pick_up.explanations.count()
     
     def __str__(self):
         return "Pick up"
