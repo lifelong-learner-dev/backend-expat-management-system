@@ -13,6 +13,7 @@ class Family_residence_permitAdmin(admin.ModelAdmin):
         "tc_id_expiry_date",
         "passport_number",
         "passport_expiry_date",
+        "first_visit_date",
         "created_at",
     )
 

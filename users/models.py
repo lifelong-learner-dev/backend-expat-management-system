@@ -70,6 +70,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=150)
     is_manager = models.BooleanField(default=False)
     is_expat = models.BooleanField(default=False)
+    is_director = models.BooleanField(default=False)
     is_supporter = models.BooleanField(default=False)
     email = models.EmailField(("email address"), blank=True)
     house_address = models.CharField(max_length=150, blank=True)

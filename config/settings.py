@@ -30,6 +30,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+THIRD_PARTY_APPS = [
+    "rest_framework",
+]
+
 CUSTOM_APPS = [
     "common.apps.CommonConfig", 
     "users.apps.UsersConfig", 
@@ -39,6 +43,13 @@ CUSTOM_APPS = [
     "green_cards.apps.Green_cardsConfig",
     "pick_ups.apps.Pick_upsConfig",
     "moving.apps.MovingConfig",
+    "company_cars.apps.CompanyCarsConfig",
+    "houses.apps.HousesConfig",
+    "work_permits.apps.WorkPermitsConfig",
+    "work_permits_requests.apps.WorkPermitsRequestsConfig",
+    "additional_information.apps.AdditionalInformationConfig",
+    "driving_licenses.apps.DrivingLicensesConfig",
+    "announcements.apps.AnnouncementsConfig",
 ]
 
 SYSTEM_APPS = [
@@ -50,7 +61,7 @@ SYSTEM_APPS = [
     'django.contrib.staticfiles',
 ]
 
-INSTALLED_APPS = SYSTEM_APPS + CUSTOM_APPS
+INSTALLED_APPS = SYSTEM_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

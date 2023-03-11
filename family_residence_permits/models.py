@@ -69,7 +69,8 @@ class Family_residence_permit(CommonModel):
     turkish_id = models.SmallIntegerField(("Turkish ID number"), null=False, default="1",)
     tc_id_expiry_date = models.DateField(("TC expiry date"), default=date.today)
     passport_number = models.CharField(max_length=20, blank=True)
-    passport_expiry_date = models.DateField(("passport expiry date"), default=date.today)
+    passport_expiry_date = models.DateField(("Passport expiry date"), default=date.today)
+    first_visit_date = models.DateField(("First visit date to Turkiye"), default=date.today)
 
     family = models.CharField(
         max_length=10,
@@ -81,12 +82,12 @@ class Family_residence_permit(CommonModel):
         choices=GenderChoices.choices,
         blank=True,)
 
-    Krstatus = models.CharField(
+    krstatus = models.CharField(
         max_length=150,
         choices=KrstatusChoices.choices,
         blank=True,)
 
-    Enstatus = models.CharField(
+    enstatus = models.CharField(
         max_length=150,
         choices=EnstatusChoices.choices,
         blank=True,)
