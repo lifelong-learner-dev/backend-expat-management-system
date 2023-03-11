@@ -35,21 +35,22 @@ THIRD_PARTY_APPS = [
 ]
 
 CUSTOM_APPS = [
-    "common.apps.CommonConfig", 
-    "users.apps.UsersConfig", 
-    "family_residence_permits.apps.Family_residence_permitsConfig",
     "processes.apps.ProcessesConfig",
     "requests.apps.RequestsConfig",
-    "green_cards.apps.Green_cardsConfig",
-    "pick_ups.apps.Pick_upsConfig",
-    "moving.apps.MovingConfig",
+    "additional_information.apps.AdditionalInformationConfig",
+    "announcements.apps.AnnouncementsConfig",
+    "common.apps.CommonConfig",
     "company_cars.apps.CompanyCarsConfig",
+    "driving_licenses.apps.DrivingLicensesConfig",
+    "family_residence_permits.apps.Family_residence_permitsConfig",
+    "green_cards.apps.Green_cardsConfig",
     "houses.apps.HousesConfig",
+    "moving.apps.MovingConfig",
+    "pick_ups.apps.Pick_upsConfig",
+    "pick_ups_requests.apps.PickUpsRequestsConfig",
+    "users.apps.UsersConfig", 
     "work_permits.apps.WorkPermitsConfig",
     "work_permits_requests.apps.WorkPermitsRequestsConfig",
-    "additional_information.apps.AdditionalInformationConfig",
-    "driving_licenses.apps.DrivingLicensesConfig",
-    "announcements.apps.AnnouncementsConfig",
 ]
 
 SYSTEM_APPS = [
