@@ -7,6 +7,12 @@ class Green_card(CommonModel):
         max_length=180,
         default="",
     )
+    expat = models.ForeignKey(
+        "users.User",
+        on_delete=models.CASCADE,
+        related_name="green_cards",
+        default="",
+    )
     green_card_expiry_date = models.DateField(
         null=True,
         blank=True,

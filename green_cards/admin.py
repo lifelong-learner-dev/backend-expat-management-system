@@ -5,6 +5,7 @@ from .models import Green_card, Explanation
 class Green_cardAdmin(admin.ModelAdmin):
     list_display = (
         "name",
+        "expat",
         "green_card_expiry_date",
         "overseas_car_insurance_expiry_date",
         "total_explanations",

@@ -12,6 +12,10 @@ class Green_cards_request(CommonModel):
         on_delete=models.CASCADE,
         related_name="green_cards_requests",
     )
+    available_country = models.ManyToManyField(
+        "green_cards_requests.Available_country",
+        related_name="green_cards_requests",
+    )
     class GreencardperiodChoices(models.TextChoices):
         ONE_MONTH = ("one_month", "One month")
         THREE_MONTHS = ("three_months", "Three months")
@@ -38,7 +42,23 @@ class Green_cards_request(CommonModel):
         null=True,
         blank=True,
     )
-
     will_you_request_green_card = models.BooleanField(default=False) 
     will_you_request_overseas_car_insurance = models.BooleanField(default=False)
     do_you_have_power_of_attorney = models.BooleanField(default=False)
+
+class Available_country(CommonModel):
+    name = models.CharField(
+        max_length=180,
+        default="",
+    ) 
+    description = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+    )
+
+    def __str__(self) -> str:
+        return self.name
+        
+    class Meta:
+        verbose_name_plural = "Available countries"
