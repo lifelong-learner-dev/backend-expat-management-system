@@ -3,7 +3,7 @@ from common.models import CommonModel
 from datetime import date
 
 
-class Moving_company(CommonModel):
+class Real_estate_agent(CommonModel):
     name = models.CharField(
         max_length=180,
         default="",
@@ -25,5 +25,5 @@ class Moving_company(CommonModel):
     def __str__(self) -> str:
         return self.name
     class Meta:
-        verbose_name_plural = "Moving companies"
+        verbose_name_plural = "Real estate agents"
     

@@ -44,3 +44,9 @@ class Work_permits_request(CommonModel):
         max_length=150,
         choices=EnstatusChoices.choices,
         blank=True,)
+
+    def __str__(self) -> str:
+        return self.name
+    class Meta:
+        verbose_name_plural = "Work permits requests"
+    

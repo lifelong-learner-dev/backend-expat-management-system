@@ -80,3 +80,9 @@ class Moving_request(CommonModel):
         max_length=150,
         choices=EnreceiverChoices.choices,
         blank=True,)
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Moving requests"

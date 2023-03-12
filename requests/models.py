@@ -29,7 +29,7 @@ class Request(CommonModel):
         choices=RequestsubjectChoices.choices,
         blank=True,)
 
-    Green_card_car_insurance_period = models.CharField(
+    green_card_car_insurance_period = models.CharField(
         max_length=50,
         choices=GreencardcarinsuranceperiodChoices.choices,
         blank=True,)

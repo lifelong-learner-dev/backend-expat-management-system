@@ -61,3 +61,9 @@ class House_rent_extension(CommonModel):
         choices=EnstatusChoices.choices,
         blank=True,
     )
+
+    def __str__(self) -> str:
+        return self.name
+        
+    class Meta:
+        verbose_name_plural = "House rent extensions"
