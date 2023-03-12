@@ -72,6 +72,7 @@ class User(AbstractUser):
     is_expat = models.BooleanField(default=False)
     is_director = models.BooleanField(default=False)
     is_supporter = models.BooleanField(default=False)
+    cellphone_number = models.SmallIntegerField(("Cellphone number"), null=False, default="1",)
     email = models.EmailField(("email address"), blank=True)
     house_address = models.CharField(max_length=150, blank=True)
     turkish_id = models.SmallIntegerField(("Turkish ID number"), null=False, default="1",)

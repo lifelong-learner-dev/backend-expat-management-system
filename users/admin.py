@@ -16,6 +16,7 @@ class CustomsUserAdmin(UserAdmin):
                     "hq_position",
                     "first_name", 
                     "last_name", 
+                    "cellphone_number",
                     "email",
                     "house_address",
                     "company_car_model",
