@@ -46,6 +46,7 @@ CUSTOM_APPS = [
     "green_cards.apps.Green_cardsConfig",
     "houses.apps.HousesConfig",
     "moving.apps.MovingConfig",
+    "moving_requests.apps.MovingRequestsConfig",
     "pick_ups.apps.Pick_upsConfig",
     "pick_ups_requests.apps.PickUpsRequestsConfig",
     "users.apps.UsersConfig", 
