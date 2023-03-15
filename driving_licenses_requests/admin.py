@@ -1,14 +1,11 @@
 from django.contrib import admin
-from .models import Driving_license, Explanation, Document
+from .models import Driving_licenses_request, Explanation, Document
 
-@admin.register(Driving_license)
-class Driving_licenseAdmin(admin.ModelAdmin):
+@admin.register(Driving_licenses_request)
+class Driving_licenses_requestAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "expat",
-        "family",
-        "expat_have_driving_license",
-        "spouse_have_driving_license",
         "created_at",
     )
 

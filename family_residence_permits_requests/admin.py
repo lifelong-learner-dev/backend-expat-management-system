@@ -1,24 +1,28 @@
 from django.contrib import admin
-from .models import Driving_license, Explanation, Document
+from .models import Family_residence_permits_request, Explanation, Document
 
-@admin.register(Driving_license)
-class Driving_licenseAdmin(admin.ModelAdmin):
+@admin.register(Family_residence_permits_request)
+class Family_residence_permits_requestAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "expat",
-        "family",
-        "expat_have_driving_license",
-        "spouse_have_driving_license",
+        "residence_permits",
+        "location",
+        "date",
+        "krstatus",
+        "enstatus",
         "created_at",
     )
 
     list_filter = (
         "name",
         "expat",
+        "residence_permits",
     )
     search_fields = (
         "name",
         "expat",
+        "residence_permits",
     )
 
 @admin.register(Explanation)
