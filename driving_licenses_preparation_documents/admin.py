@@ -6,6 +6,7 @@ class Driving_licenses_preparation_documentAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "expat",
+        "is_english_driving_license",
         "created_at",
     )
 

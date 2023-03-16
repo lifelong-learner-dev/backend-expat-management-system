@@ -109,6 +109,12 @@ class Family_residence_permit(CommonModel):
         related_name="family_residence_permits",
     )
 
+    visit_place = models.ManyToManyField(
+        "family_residence_permits.Visit_place",
+        related_name="family_residence_permits",
+    )
+
+
     def __str__(self):
         return "Family residence permit"
     
@@ -153,3 +159,22 @@ class Document(CommonModel):
         return self.name
     class Meta:
         verbose_name_plural = "Documents"
+
+class Visit_place(CommonModel):
+    name = models.CharField(
+        max_length=180,
+    )
+    description = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+    )
+    detailed_information = models.CharField(
+        max_length=250,
+        null=True,
+        blank=True,
+    )
+    def __str__(self) -> str:
+        return self.name
+    class Meta:
+        verbose_name_plural = "Visit places"

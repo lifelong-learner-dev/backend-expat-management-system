@@ -1,14 +1,13 @@
 from django.contrib import admin
-from .models import Driving_license, Explanation, Document, Visit_place
+from .models import Company_cars_request, Explanation, Document
 
-@admin.register(Driving_license)
-class Driving_licenseAdmin(admin.ModelAdmin):
+@admin.register(Company_cars_request)
+class Company_cars_requestAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "expat",
-        "family",
-        "expat_have_driving_license",
-        "spouse_have_driving_license",
+        "accident_location",
+        "accident_type",
         "created_at",
     )
 
@@ -40,23 +39,6 @@ class ExplanationAdmin(admin.ModelAdmin):
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "description",
-        "detailed_information",
-        "created_at",
-    )
-    list_filter = (
-        "name",
-        "description",
-    )
-    search_fields = (
-        "name",
-        "description",
-    )
-
-@admin.register(Visit_place)
-class Visit_placeAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "description",

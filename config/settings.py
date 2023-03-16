@@ -40,6 +40,7 @@ CUSTOM_APPS = [
     "additional_information.apps.AdditionalInformationConfig",
     "announcements.apps.AnnouncementsConfig",
     "common.apps.CommonConfig",
+    "company_cars_requests.apps.CompanyCarsRequestsConfig",
     "company_cars.apps.CompanyCarsConfig",
     "driving_licenses_preparation_documents.apps.DrivingLicensesPreparationDocumentsConfig",
     "driving_licenses.apps.DrivingLicensesConfig",

@@ -42,6 +42,59 @@ class Green_cards_request(CommonModel):
         null=True,
         blank=True,
     )
+
+    green_card_bank_iban_number = models.CharField(
+        max_length=180,
+        default="",
+    )
+
+    green_card_bank_account_name = models.CharField(
+        max_length=180,
+        default="",
+    )
+
+    class CurrencyChoices(models.TextChoices):
+        USD = ("usd", "USD")
+        TL = ("tl", "TL") 
+
+    currency_green_card = models.CharField(
+        max_length=5,
+        choices=CurrencyChoices.choices,
+        blank=True,
+    )
+
+    overseas_car_insurance_bank_iban_number = models.CharField(
+        max_length=180,
+        default="",
+    )
+
+    overseas_car_insurance_bank_account_name = models.CharField(
+        max_length=180,
+        default="",
+    )
+
+    currency_overseas_car_insurance = models.CharField(
+        max_length=5,
+        choices=CurrencyChoices.choices,
+        blank=True,
+    )
+
+    power_of_attorney_bank_iban_number = models.CharField(
+        max_length=180,
+        default="",
+    )
+
+    power_of_attorney_bank_account_name = models.CharField(
+        max_length=180,
+        default="",
+    )
+
+    currency_power_of_attorney = models.CharField(
+        max_length=5,
+        choices=CurrencyChoices.choices,
+        blank=True,
+    )
+
     will_you_request_green_card = models.BooleanField(default=False) 
     will_you_request_overseas_car_insurance = models.BooleanField(default=False)
     do_you_have_power_of_attorney = models.BooleanField(default=False)
