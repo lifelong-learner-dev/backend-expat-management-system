@@ -48,7 +48,7 @@ class Driving_license(CommonModel):
         COMPLETED = ("completed", "카드 발급 및 전달 완료, 모든 절차 완료")
 
     krstatus = models.CharField(
-        max_length=100,
+        max_length=500,
         choices=KrstatusChoices.choices,
         blank=True,)
 
@@ -74,6 +74,8 @@ class Driving_license(CommonModel):
         max_length=180,
         default="",
     )
+    when_was_your_first_entry_date = models.DateField(("When was your first entry date?"), default=date.today)
+
     visit_date = models.DateField(("Visit date"), default=date.today)
     visit_time = models.TimeField(("Visit time"), default="19:00")
 
