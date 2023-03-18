@@ -1,3 +1,70 @@
 from django.contrib import admin
+from .models import Additional_information, Explanation, Document, Visit_place
 
-# Register your models here.
+@admin.register(Additional_information)
+class Additional_informationAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "subject",
+        "created_at",
+    )
+
+    list_filter = (
+        "name",
+        "subject",
+    )
+    search_fields = (
+        "name",
+        "subject",
+    )
+
+@admin.register(Explanation)
+class ExplanationAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "description",
+        "detailed_information",
+        "created_at",
+    )
+    list_filter = (
+        "name",
+        "description",
+    )
+    search_fields = (
+        "name",
+        "description",
+    )
+
+@admin.register(Document)
+class DocumentAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "description",
+        "detailed_information",
+        "created_at",
+    )
+    list_filter = (
+        "name",
+        "description",
+    )
+    search_fields = (
+        "name",
+        "description",
+    )
+
+@admin.register(Visit_place)
+class Visit_placeAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "description",
+        "detailed_information",
+        "created_at",
+    )
+    list_filter = (
+        "name",
+        "description",
+    )
+    search_fields = (
+        "name",
+        "description",
+    )

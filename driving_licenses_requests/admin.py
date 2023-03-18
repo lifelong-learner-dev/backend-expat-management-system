@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Driving_licenses_request, Explanation, Document
+from .models import Driving_licenses_request, Explanation, Document, Visit_place
 
 @admin.register(Driving_licenses_request)
 class Driving_licenses_requestAdmin(admin.ModelAdmin):
@@ -37,6 +37,23 @@ class ExplanationAdmin(admin.ModelAdmin):
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "description",
+        "detailed_information",
+        "created_at",
+    )
+    list_filter = (
+        "name",
+        "description",
+    )
+    search_fields = (
+        "name",
+        "description",
+    )
+
+@admin.register(Visit_place)
+class Visit_placeAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "description",

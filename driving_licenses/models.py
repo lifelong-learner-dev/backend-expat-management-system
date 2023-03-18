@@ -94,10 +94,10 @@ class Driving_license(CommonModel):
 
 
     def __str__(self):
-        return "Driving_license"
+        return "Driving license"
     
     class Meta:
-        verbose_name_plural = "Driving_licenses"
+        verbose_name_plural = "Driving licenses"
     
 class Explanation(CommonModel):
     name = models.CharField(

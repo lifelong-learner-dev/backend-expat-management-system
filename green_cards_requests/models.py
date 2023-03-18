@@ -99,6 +99,14 @@ class Green_cards_request(CommonModel):
     will_you_request_overseas_car_insurance = models.BooleanField(default=False)
     do_you_have_power_of_attorney = models.BooleanField(default=False)
 
+
+    def __str__(self):
+        return "Green card request"
+    
+    class Meta:
+        verbose_name_plural = "Green card requests"
+
+
 class Available_country(CommonModel):
     name = models.CharField(
         max_length=180,
@@ -110,8 +118,8 @@ class Available_country(CommonModel):
         blank=True,
     )
 
-    def __str__(self) -> str:
-        return self.name
-        
+    def __str__(self):
+        return "Available country"
+    
     class Meta:
         verbose_name_plural = "Available countries"

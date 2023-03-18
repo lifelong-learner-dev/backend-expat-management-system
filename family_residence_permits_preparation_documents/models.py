@@ -203,3 +203,9 @@ class Family_residence_permits_preparation_document(CommonModel):
         max_length=180,
         default="",
     )
+
+    def __str__(self):
+        return "Family residence permit preparation document"
+    
+    class Meta:
+        verbose_name_plural = "Family residence permit preparation documents"

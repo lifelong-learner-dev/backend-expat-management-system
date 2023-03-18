@@ -27,3 +27,9 @@ class Green_cards_preparation_document(CommonModel):
         max_length=180,
         default="",
     )
+
+    def __str__(self):
+        return "Green card preparation document"
+    
+    class Meta:
+        verbose_name_plural = "Green card preparation documents"
