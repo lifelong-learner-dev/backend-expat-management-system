@@ -35,9 +35,7 @@ THIRD_PARTY_APPS = [
 ]
 
 CUSTOM_APPS = [
-    "processes.apps.ProcessesConfig",
-    "requests.apps.RequestsConfig",
-    "additional_information.apps.AdditionalInformationConfig",
+    "additional_information.apps.Additional_informationConfig",
     "announcements.apps.AnnouncementsConfig",
     "common.apps.CommonConfig",
     "company_cars_requests.apps.CompanyCarsRequestsConfig",

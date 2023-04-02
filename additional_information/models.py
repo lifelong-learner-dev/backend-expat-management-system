@@ -3,12 +3,10 @@ from common.models import CommonModel
 from datetime import date
 
 class Additional_information(CommonModel):
-
     name = models.CharField(
         max_length=180,
         default="",
     )
-
     subject = models.CharField(
         max_length=180,
         default="",
