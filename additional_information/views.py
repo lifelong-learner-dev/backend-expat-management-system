@@ -1,4 +1,9 @@
+import time
+from django.conf import settings
+from django.utils import timezone
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.views import APIView
+from django.db import transaction
 from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST
 from rest_framework.response import Response
 from rest_framework.exceptions import (
@@ -131,6 +136,9 @@ class Visit_placeDetail(APIView):
         return Response(status=HTTP_204_NO_CONTENT)
 
 class Additional_information(APIView):
+
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    
     def get(self, request):
         all_additional_information = Additional_informationModel.objects.all()
         serializer = Additional_informationListSerializer(all_additional_information, many=True, context={"request": request},)
@@ -145,6 +153,9 @@ class Additional_information(APIView):
             return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
     
 class Additional_informationDetail(APIView):
+
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
     def get_object(self, pk):
         try: 
             return Additional_informationModel.objects.get(pk=pk)

@@ -12,6 +12,13 @@ class Additional_information(CommonModel):
         default="",
     ) 
 
+    responsible_person = models.ForeignKey(
+        "users.User",
+        on_delete=models.CASCADE,
+        related_name="houses",
+        default=""
+    )
+
     explanations = models.ManyToManyField(
         "additional_information.Explanation",
         related_name="additional_information",
