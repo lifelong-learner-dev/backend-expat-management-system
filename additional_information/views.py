@@ -4,6 +4,7 @@ from django.utils import timezone
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.views import APIView
 from django.db import transaction
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST
 from rest_framework.response import Response
 from rest_framework.exceptions import (
@@ -147,8 +148,30 @@ class Additional_information(APIView):
     def post(self, request):
         serializer = Additional_informationListSerializer(data=request.data)
         if serializer.is_valid():
-           additional_information = serializer.save()
-           return Response(Additional_informationListSerializer(additional_information).data)
+            try:
+                with transaction.atomic():
+                    additional_information = serializer.save(responsible_person = request.user,)
+                    explanations = request.data.get("explanations")
+                    for explanation_pk in explanations:
+                        explanation = Explanation.objects.get(pk=explanation_pk)
+                        additional_information.explanations.add(explanation)
+                    documents = request.data.get("documents")
+                    for document_pk in documents:
+                        document = Document.objects.get(pk=document_pk)
+                        additional_information.documents.add(document)
+                    visit_places = request.data.get("visit_places")
+                    for visit_place_pk in visit_places:
+                        visit_place = Visit_place.objects.get(pk=visit_place_pk)
+                        additional_information.visit_places.add(visit_place)    
+                    serializer = Additional_informationListSerializer(additional_information, context={"request": request},)
+                    return Response(serializer.data)
+            except ObjectDoesNotExist as e:
+                if isinstance(e, Explanation.DoesNotExist):
+                    raise ParseError("Explanation not found")
+                elif isinstance(e, Document.DoesNotExist):
+                    raise ParseError("Document not found") 
+                elif isinstance(e, Visit_place.DoesNotExist):
+                    raise ParseError("Visit_place not found") 
         else:
             return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
     
