@@ -14,7 +14,7 @@ from rest_framework.exceptions import (
 )
 from .models import Additional_information as Additional_informationModel
 from .models import Explanation, Document, Visit_place
-from .serializers import ExplanationSerializer, DocumentSerializer, Visit_placeSerializer, Additional_informationListSerializer
+from .serializers import ExplanationSerializer, DocumentSerializer, Visit_placeSerializer, Additional_informationListSerializer, Additional_informationDetailSerializer
 
 class Explanations(APIView):
     def get(self, request):
@@ -146,11 +146,11 @@ class Additional_information(APIView):
         return Response(serializer.data)
     
     def post(self, request):
-        serializer = Additional_informationListSerializer(data=request.data)
+        serializer = Additional_informationDetailSerializer(data=request.data)
         if serializer.is_valid():
             try:
                 with transaction.atomic():
-                    additional_information = serializer.save(responsible_person = request.user,)
+                    additional_information = serializer.save(responsible_person = request.user)
                     explanations = request.data.get("explanations")
                     for explanation_pk in explanations:
                         explanation = Explanation.objects.get(pk=explanation_pk)
@@ -163,7 +163,7 @@ class Additional_information(APIView):
                     for visit_place_pk in visit_places:
                         visit_place = Visit_place.objects.get(pk=visit_place_pk)
                         additional_information.visit_places.add(visit_place)    
-                    serializer = Additional_informationListSerializer(additional_information, context={"request": request},)
+                    serializer = Additional_informationDetailSerializer(additional_information, context={"request": request},)
                     return Response(serializer.data)
             except ObjectDoesNotExist as e:
                 if isinstance(e, Explanation.DoesNotExist):
@@ -187,19 +187,17 @@ class Additional_informationDetail(APIView):
     
     def get(self, request, pk):
         additional_information = self.get_object(pk)
-        serializer = Additional_informationListSerializer(additional_information)
+        serializer = Additional_informationDetailSerializer(additional_information, context={"request": request},)
         return Response(serializer.data)
 
     def put(self, request, pk):
         additional_information = self.get_object(pk)
-        serializer = Additional_informationListSerializer(additional_information, data=request.data, partial=True)
-        if serializer.is_valid():
-            updated_additional_information = serializer.save()
-            return Response(Additional_informationListSerializer(updated_additional_information).data,)
-        else:
-          return Response(serializer.error)  
+        if additional_information.responsible_person != request.user:
+            raise PermissionDenied
 
     def delete(self, request, pk):
         additional_information = self.get_object(pk)
+        if additional_information.responsible_person != request.user:
+            raise PermissionDenied
         additional_information.delete()
         return Response(status=HTTP_204_NO_CONTENT)

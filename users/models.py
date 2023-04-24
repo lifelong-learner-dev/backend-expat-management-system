@@ -65,6 +65,16 @@ class User(AbstractUser):
         SM = ("sm", "SM")
         CM = ("cm", "CM")
 
+    class CarlocationChoices(models.TextChoices):
+        ISTANBUL = ("istanbul", "Istanbul")
+        IZMIT = ("izmit", "Izmit")
+
+    class HouselocationChoices(models.TextChoices):
+        ALKENT = ("alkent", "Alkent")
+        SARIYER = ("sariyer", "Sariyer")
+        BESIKTAS = ("besiktas", "Besiktas")
+        GOKTURK = ("gokturk", "Gokturk")
+
     avatar = models.ImageField(blank=True)
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
@@ -79,12 +89,33 @@ class User(AbstractUser):
     tc_id_expiry_date = models.DateField(("TC expiry date"), default=date.today)
     passport_number = models.CharField(max_length=20, blank=True)
     passport_expiry_date = models.DateField(("passport expiry date"), default=date.today)
+    is_company_cars = models.BooleanField(default=False)
+    is_driving_licenses = models.BooleanField(default=False)
+    is_family_residence_permits = models.BooleanField(default=False)
+    is_green_cards = models.BooleanField(default=False)
+    is_houses = models.BooleanField(default=False)
+    is_moving = models.BooleanField(default=False)
+    is_pick_ups = models.BooleanField(default=False)
+    is_work_permits = models.BooleanField(default=False)
+
     car_plate = models.CharField(max_length=20, blank=True)
     company_car_model = models.CharField(
         max_length=10,
         choices=companycarChoices.choices,
         blank=True,
     )
+    car_model_year = models.SmallIntegerField(("Car model year"), null=False, default="1",)
+
+    house_location = models.CharField(
+        max_length=10,
+        choices=HouselocationChoices.choices,
+        blank=True,)
+   
+    car_location = models.CharField(
+        max_length=10,
+        choices=CarlocationChoices.choices,
+        blank=True,)
+
 
     gender = models.CharField(
         max_length=10,

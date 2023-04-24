@@ -50,7 +50,7 @@ class Driving_license(CommonModel):
     krstatus = models.CharField(
         max_length=500,
         choices=KrstatusChoices.choices,
-        blank=True,)
+        default=KrstatusChoices.PLEASE_SEND_SCANNED_KOREAN_DRIVING_LICENSE,)
 
     class FamilyChoices(models.TextChoices):
         EXPAT = ("expat", "Expat")

@@ -1,4 +1,9 @@
+import time
+from django.conf import settings
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.views import APIView
+from django.db import transaction
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST
 from rest_framework.response import Response
 from rest_framework.exceptions import (
@@ -7,7 +12,7 @@ from rest_framework.exceptions import (
     PermissionDenied,
 )
 from .models import Explanation, Document, Visit_place, Announcement
-from .serializers import ExplanationSerializer, DocumentSerializer, Visit_placeSerializer, AnnouncementSerializer
+from .serializers import ExplanationSerializer, DocumentSerializer, Visit_placeSerializer, AnnouncementDetailSerializer, AnnouncementListSerializer
 
 class Explanations(APIView):
     def get(self, request):
@@ -130,7 +135,67 @@ class Visit_placeDetail(APIView):
         return Response(status=HTTP_204_NO_CONTENT)
 
 class Announcements(APIView):
-    pass
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    
+    def get(self, request):
+        all_announcements = Announcement.objects.all()
+        serializer = AnnouncementListSerializer(all_announcements, many=True, context={"request": request},)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = AnnouncementDetailSerializer(data=request.data)
+        if serializer.is_valid():
+            try:
+                with transaction.atomic():
+                    announcement = serializer.save(responsible_person = request.user)
+                    explanations = request.data.get("explanations")
+                    for explanation_pk in explanations:
+                        explanation = Explanation.objects.get(pk=explanation_pk)
+                        announcement.explanations.add(explanation)
+                    documents = request.data.get("documents")
+                    for document_pk in documents:
+                        document = Document.objects.get(pk=document_pk)
+                        announcement.documents.add(document)
+                    visit_places = request.data.get("visit_places")
+                    for visit_place_pk in visit_places:
+                        visit_place = Visit_place.objects.get(pk=visit_place_pk)
+                        announcement.visit_places.add(visit_place)    
+                    serializer = AnnouncementDetailSerializer(announcement, context={"request": request},)
+                    return Response(serializer.data)
+            except ObjectDoesNotExist as e:
+                if isinstance(e, Explanation.DoesNotExist):
+                    raise ParseError("Explanation not found")
+                elif isinstance(e, Document.DoesNotExist):
+                    raise ParseError("Document not found") 
+                elif isinstance(e, Visit_place.DoesNotExist):
+                    raise ParseError("Visit_place not found") 
+        else:
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+    
 
 class AnnouncementDetail(APIView):
-    pass
+
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_object(self, pk):
+        try: 
+            return Announcement.objects.get(pk=pk)
+        except Announcement.DoesNotExist:
+            raise NotFound
+    
+    def get(self, request, pk):
+        announcement = self.get_object(pk)
+        serializer = AnnouncementDetailSerializer(announcement, context={"request": request},)
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        announcement = self.get_object(pk)
+        if announcement.responsible_person != request.user:
+            raise PermissionDenied
+
+    def delete(self, request, pk):
+        announcement = self.get_object(pk)
+        if announcement.responsible_person != request.user:
+            raise PermissionDenied
+        announcement.delete()
+        return Response(status=HTTP_204_NO_CONTENT)

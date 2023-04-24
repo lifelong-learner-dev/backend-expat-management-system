@@ -85,12 +85,12 @@ class Family_residence_permit(CommonModel):
     krstatus = models.CharField(
         max_length=150,
         choices=KrstatusChoices.choices,
-        blank=True,)
+        default=KrstatusChoices.NOT_APPLIIED,)
 
     enstatus = models.CharField(
         max_length=150,
         choices=EnstatusChoices.choices,
-        blank=True,)
+        default=EnstatusChoices.NOT_APPLIIED,)
     
     interview_place = models.CharField(
         max_length=180,

@@ -9,6 +9,13 @@ class Announcement(CommonModel):
         default="",
     )
 
+    responsible_person = models.ForeignKey(
+        "users.User",
+        on_delete=models.CASCADE,
+        related_name="announcements",
+        default="",
+    )
+
     class SubjectChoices(models.TextChoices):
         WORK_PERMITS = ("work_permits", "Work permits")
         REAL_ESTATE_AGENTS = ("real_estate_agents", "Real estate agents")
@@ -41,7 +48,7 @@ class Announcement(CommonModel):
         "announcements.Document",
         related_name="announcements",
     )
-    visit_place = models.ManyToManyField(
+    visit_places = models.ManyToManyField(
         "announcements.Visit_place",
         related_name="announcements",
     )

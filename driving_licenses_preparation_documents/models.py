@@ -60,6 +60,23 @@ class Driving_licenses_preparation_document(CommonModel):
 
     changed_date = models.DateField(("When did you change address?"), default=date.today)
 
+
+    two_changed_address = models.CharField(
+        max_length=180,
+        default="",
+    )
+
+    two_changed_date = models.DateField(("When did you change address?"), default=date.today)
+
+
+    three_changed_address = models.CharField(
+        max_length=180,
+        default="",
+    )
+
+    three_changed_date = models.DateField(("When did you change address?"), default=date.today)
+
+
     driving_license_number = models.CharField(
         max_length=180,
         default="",

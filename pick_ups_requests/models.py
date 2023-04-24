@@ -19,8 +19,18 @@ class Pick_ups_request(CommonModel):
         default="",
     )
 
+    flight_number = models.CharField(
+        max_length=180,
+        default="",
+    )
+
     date = models.DateField(("Flight date"), default=date.today)
     time = models.TimeField(("Arrival or departure time"), default="19:00")
+
+    detailed_information = models.CharField(
+        max_length=500,
+        default="",
+    ) 
 
     class DriversChoices(models.TextChoices):
         ERHAN_BEY = ("erhan_bey", "Erhan bey")
@@ -30,6 +40,7 @@ class Pick_ups_request(CommonModel):
     class VehiclesChoices(models.TextChoices):
         H350_VIP = ("h350_vip", "H350 VIP")
         H350_VAN = ("h350_van", "H350 VAN")
+        STARIA = ("staria", "STARIA")
 
     class KrsituationsChoices(models.TextChoices):
         FIRSTVISIT = ("familyfirstvisit", "가족 튀르키예 첫 입국")

@@ -9,25 +9,12 @@ class Company_car(CommonModel):
         default="",
     )
 
-    expat = models.ForeignKey(
+    responsible_person = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,
         related_name="company_cars",
-    )
-
-    responsible_person = models.CharField(
-        max_length=180,
         default="",
     )
-
-    class CarlocationChoices(models.TextChoices):
-        ISTANBUL = ("istanbul", "Istanbul")
-        IZMIT = ("izmit", "Izmit")
-        
-    car_location = models.CharField(
-        max_length=10,
-        choices=CarlocationChoices.choices,
-        blank=True,)
 
     explanations = models.ManyToManyField(
         "company_cars.Explanation",

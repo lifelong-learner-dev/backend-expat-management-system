@@ -23,72 +23,26 @@ class Additional_informationDetailSerializer(ModelSerializer):
     documents = DocumentSerializer(read_only=True, many=True)
     visit_places = Visit_placeSerializer(read_only=True, many=True)
 
-    is_manager = SerializerMethodField()
-    is_expat = SerializerMethodField()
-    is_director = SerializerMethodField()
-    is_supporter = SerializerMethodField()
+    is_responsible_person = SerializerMethodField()
 
     class Meta:
         model = Additional_information
         fields = "__all__"
 
-    def get_is_manager(self, additional_information):
+    def get_is_responsible_person(self, additional_information):
         request = self.context.get("request")
         if request:
             return additional_information.responsible_person == request.user
         return False
-
-    def get_is_expat(self, additional_information):
-        request = self.context.get("request")
-        if request:
-            return additional_information.responsible_person == request.user
-        return False
-
-    def get_is_director(self, additional_information):
-        request = self.context.get("request")
-        if request:
-            return additional_information.responsible_person == request.user
-        return False
-
-    def get_is_supporter(self, additional_information):
-        request = self.context.get("request")
-        if request:
-            return additional_information.responsible_person == request.user
-        return False
-
 
 class Additional_informationListSerializer(ModelSerializer):
 
-    is_manager = SerializerMethodField()
-    is_expat = SerializerMethodField()
-    is_director = SerializerMethodField()
-    is_supporter = SerializerMethodField()
+    is_responsible_person = SerializerMethodField()
 
     class Meta:
         model = Additional_information
-        fields = ("pk", "name", "subject", "created_at", "updated_at",)
+        fields = ("pk", "name", "subject", "responsible_person", "is_responsible_person", "explanations", "documents", "visit_places", "created_at", "updated_at",)
 
-
-    def get_is_manager(self, additional_information):
+    def get_is_responsible_person(self, additional_information):
         request = self.context.get("request")
-        if request:
-            return additional_information.responsible_person == request.user
-        return False
-
-    def get_is_expat(self, additional_information):
-        request = self.context.get("request")
-        if request:
-            return additional_information.responsible_person == request.user
-        return False
-
-    def get_is_director(self, additional_information):
-        request = self.context.get("request")
-        if request:
-            return additional_information.responsible_person == request.user
-        return False
-
-    def get_is_supporter(self, additional_information):
-        request = self.context.get("request")
-        if request:
-            return additional_information.responsible_person == request.user
-        return False
+        return additional_information.responsible_person == request.user

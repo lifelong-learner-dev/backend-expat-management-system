@@ -54,12 +54,12 @@ class Driving_licenses_request(CommonModel):
     krstatus = models.CharField(
         max_length=100,
         choices=KrstatusChoices.choices,
-        blank=True,)
+        default=KrstatusChoices.INFORMED,)
 
     enstatus = models.CharField(
         max_length=100,
         choices=EnstatusChoices.choices,
-        blank=True,)
+        default=EnstatusChoices.INFORMED,)
 
 
     explanations = models.ManyToManyField(

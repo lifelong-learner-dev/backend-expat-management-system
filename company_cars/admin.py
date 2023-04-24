@@ -5,19 +5,17 @@ from .models import Company_car, Explanation, Document
 class Company_carAdmin(admin.ModelAdmin):
     list_display = (
         "name",
-        "expat",
         "responsible_person",
-        "car_location",
         "created_at",
     )
 
     list_filter = (
         "name",
-        "expat",
+        "responsible_person",
     )
     search_fields = (
         "name",
-        "expat",
+        "responsible_person",
     )
 
 @admin.register(Explanation)
