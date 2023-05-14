@@ -24,6 +24,12 @@ class Moving_preparation_document(CommonModel):
         related_name="moving_preparation_documents",
     )
 
+    house = models.ForeignKey(
+        "houses.House",
+        on_delete=models.CASCADE,
+        related_name="moving_preparation_documents",
+    )
+
     job_start_date = models.DateField(("Job starting date"), default=date.today)
     job_finish_date = models.DateField(("Job finish date"), default=date.today)
 

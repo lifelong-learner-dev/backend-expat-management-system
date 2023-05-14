@@ -8,7 +8,7 @@ class House_rent_extension(CommonModel):
         max_length=180,
         default="",
     )
-    expat = models.ForeignKey(
+    responsible_person = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,
         related_name="house_rent_extensions",

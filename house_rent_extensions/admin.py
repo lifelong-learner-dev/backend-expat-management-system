@@ -5,7 +5,7 @@ from .models import House_rent_extension
 class House_rent_extensionAdmin(admin.ModelAdmin):
     list_display = (
         "name",
-        "expat",
+        "responsible_person",
         "house",
         "new_rent_fee",
         "currency_new_rent",

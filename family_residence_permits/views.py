@@ -183,12 +183,12 @@ class Family_residence_permitDetail(APIView):
 
     def put(self, request, pk):
         family_residence_permit = self.get_object(pk)
-        if not family_residence_permit.expat == request.user or request.user.is_supporter and request.user.is_family_residence_permits:
+        if not family_residence_permit.expat == request.user or not request.user.is_supporter and not request.user.is_family_residence_permits:
             raise PermissionDenied
 
     def delete(self, request, pk):
         family_residence_permit = self.get_object(pk)
-        if not family_residence_permit.expat == request.user or request.user.is_supporter and request.user.is_family_residence_permits:
+        if not family_residence_permit.expat == request.user or not request.user.is_supporter and not request.user.is_family_residence_permits:
             raise PermissionDenied
         family_residence_permit.delete()
         return Response(status=HTTP_204_NO_CONTENT)
