@@ -12,6 +12,7 @@ from rest_framework.exceptions import (
     ParseError,
     PermissionDenied,
 )
+from .models import Moving as MovingModel
 from .models import Explanation, Moving
 from .serializers import ExplanationSerializer, MovingDetailSerializer, MovingListSerializer
 
@@ -60,7 +61,7 @@ class Moving(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     
     def get(self, request):
-        all_movings = Moving.objects.all()
+        all_movings = MovingModel.objects.all()
         serializer = MovingListSerializer(all_movings, many=True, context={"request": request},)
         return Response(serializer.data)
     
