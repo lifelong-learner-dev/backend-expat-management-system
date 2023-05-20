@@ -61,6 +61,7 @@ CUSTOM_APPS = [
     "moving.apps.MovingConfig",
     "moving_companies.apps.MovingCompaniesConfig",
     "moving_requests.apps.MovingRequestsConfig",
+    "moving_preparation_documents.apps.MovingPreparationDocumentsConfig",
     "pick_ups.apps.Pick_upsConfig",
     "pick_ups_requests.apps.PickUpsRequestsConfig",
     "real_estate_agents.apps.RealEstateAgentsConfig",
