@@ -1,9 +1,15 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from .models import Work_permit
+from .models import Explanation, Work_permit
 from users.serializers import TinyUserSerializer
+
+class ExplanationSerializer(ModelSerializer):
+    class Meta:
+        model = Explanation
+        fields = "__all__"
 
 class Work_permitDetailSerializer(ModelSerializer):
     expat = TinyUserSerializer(read_only=True)
+    explanations = ExplanationSerializer(read_only=True, many=True,)
 
     is_expat = SerializerMethodField()
 
@@ -22,7 +28,7 @@ class Work_permitListSerializer(ModelSerializer):
 
     class Meta:
         model = Work_permit
-        fields = ("pk", "name", "expat", "is_expat", "created_at", "updated_at",)
+        fields = ("pk", "name", "expat", "is_expat", "explanations", "created_at", "updated_at",)
 
     def get_is_expat(self, work_permit):
         request = self.context.get("request")

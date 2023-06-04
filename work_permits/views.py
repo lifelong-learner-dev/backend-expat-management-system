@@ -11,8 +11,43 @@ from rest_framework.exceptions import (
     ParseError,
     PermissionDenied,
 )
-from .models import Work_permit
-from .serializers import Work_permitDetailSerializer, Work_permitListSerializer
+from .models import Explanation, Work_permit
+from .serializers import ExplanationSerializer, Work_permitDetailSerializer, Work_permitListSerializer
+
+class Explanations(APIView):
+    def get(self, request):
+        all_explanations = Explanation.objects.all()
+        serializer = ExplanationSerializer(all_explanations, many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = ExplanationSerializer(data=request.data)
+        if serializer.is_valid():
+           explanation = serializer.save()
+           return Response(ExplanationSerializer(explanation).data)
+        else:
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+class ExplanationDetail(APIView):
+    def get_object(self, pk):
+        try: 
+            return Explanation.objects.get(pk=pk)
+        except Explanation.DoesNotExist:
+            raise NotFound
+    
+    def get(self, request, pk):
+        explanation = self.get_object(pk)
+        serializer = ExplanationSerializer(explanation)
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        explanation = self.get_object(pk)
+        serializer = ExplanationSerializer(explanation, data=request.data, partial=True)
+        if serializer.is_valid():
+            updated_explanation = serializer.save()
+            return Response(ExplanationSerializer(updated_explanation).data,)
+        else:
+          return Response(serializer.error)  
 
 class Work_permits(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -25,9 +60,18 @@ class Work_permits(APIView):
     def post(self, request):
         serializer = Work_permitDetailSerializer(data=request.data)
         if serializer.is_valid():
+            try:
+                with transaction.atomic():
                     work_permit = serializer.save(expat = request.user)
+                    explanations = request.data.get("explanations")
+                    for explanation_pk in explanations:
+                        explanation = Explanation.objects.get(pk=explanation_pk)
+                        work_permit.explanations.add(explanation)
                     serializer = Work_permitDetailSerializer(work_permit, context={"request": request},)
                     return Response(serializer.data)
+            except ObjectDoesNotExist as e:
+                if isinstance(e, Explanation.DoesNotExist):
+                    raise ParseError("Explanation not found")
         else:
             return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
