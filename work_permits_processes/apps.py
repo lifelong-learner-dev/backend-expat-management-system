@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class PickUpsRequestsConfig(AppConfig):
+class WorkPermitsProcessesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'pick_ups_requests'
+    name = 'work_permits_processes'

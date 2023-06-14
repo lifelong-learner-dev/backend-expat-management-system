@@ -12,4 +12,4 @@ class Driving_licenses_preparation_documentListSerializer(ModelSerializer):
     
     class Meta:
         model = Driving_licenses_preparation_document
-        fields = ("pk", "name", "expat", "is_expat", "explanations", "documents", "created_at", "updated_at",)
+        fields = ("pk", "name", "expat", "is_expat", "created_at", "updated_at",)

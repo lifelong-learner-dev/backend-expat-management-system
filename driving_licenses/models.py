@@ -79,80 +79,9 @@ class Driving_license(CommonModel):
     visit_date = models.DateField(("Visit date"), default=date.today)
     visit_time = models.TimeField(("Visit time"), default="19:00")
 
-    explanations = models.ManyToManyField(
-        "driving_licenses.Explanation",
-        related_name="driving_licenses",
-    )
-    documents = models.ManyToManyField(
-        "driving_licenses.Document",
-        related_name="driving_licenses",
-    )
-    visit_place = models.ManyToManyField(
-        "driving_licenses.Visit_place",
-        related_name="driving_licenses",
-    )
-
 
     def __str__(self):
         return "Driving license"
     
     class Meta:
         verbose_name_plural = "Driving licenses"
-    
-class Explanation(CommonModel):
-    name = models.CharField(
-        max_length=180,
-        default="",
-    ) 
-    description = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    detailed_information = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    def __str__(self) -> str:
-        return self.name
-    class Meta:
-        verbose_name_plural = "Explanations"
-    
-class Document(CommonModel):
-    name = models.CharField(
-        max_length=180,
-    )
-    description = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    detailed_information = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    def __str__(self) -> str:
-        return self.name
-    class Meta:
-        verbose_name_plural = "Documents"
-
-class Visit_place(CommonModel):
-    name = models.CharField(
-        max_length=180,
-    )
-    description = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    detailed_information = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    def __str__(self) -> str:
-        return self.name
-    class Meta:
-        verbose_name_plural = "Visit places"

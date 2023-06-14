@@ -17,12 +17,14 @@ class Green_cards_request(CommonModel):
         related_name="green_cards_requests",
     )
     class GreencardperiodChoices(models.TextChoices):
+        FIFTEEN_DAYS = ("fifteen_days", "Fifteen_days")
         ONE_MONTH = ("one_month", "One month")
         THREE_MONTHS = ("three_months", "Three months")
         SIX_MONTHS = ("six_months", "Six months")
         A_YEAR = ("a_year", "A year")
 
     class GreencardcarinsuranceperiodChoices(models.TextChoices):
+        FIFTEEN_DAYS = ("fifteen_days", "Fifteen_days")
         ONE_MONTH = ("one_month", "One month")
         THREE_MONTHS = ("three_months", "Three months")
         SIX_MONTHS = ("six_months", "Six months")

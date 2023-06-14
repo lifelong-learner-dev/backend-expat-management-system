@@ -4,67 +4,47 @@ from .models import Additional_information, Explanation, Document, Visit_place
 @admin.register(Additional_information)
 class Additional_informationAdmin(admin.ModelAdmin):
     list_display = (
+        "title",
+        "subtitle",
+        "contents",
+        "detailed_information",
+        "subtitle2",
+        "contents2",
+        "detailed_information2",
+        "subtitle3",
+        "contents3",
+        "detailed_information3",
+        "subtitle4",
+        "contents4",
+        "detailed_information4",
+        "subtitle5",
+        "contents5",
+        "detailed_information5",
+        "subtitle6",
+        "contents6",
+        "detailed_information6",
+        "subtitle7",
+        "contents7",
+        "detailed_information7",
+        "subtitle8",
+        "contents8",
+        "detailed_information8",
+        "subtitle9",
+        "contents9",
+        "detailed_information9",
+        "subtitle10",
+        "contents10",
+        "detailed_information10",
+        "created_at",
+    )
+
+
+
+    list_filter = (
         "name",
         "subject",
-        "created_at",
-    )
-
-    list_filter = (
-        "name",
-        "subject",
     )
     search_fields = (
         "name",
         "subject",
-    )
-
-@admin.register(Explanation)
-class ExplanationAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "description",
-        "detailed_information",
-        "created_at",
-    )
-    list_filter = (
-        "name",
-        "description",
-    )
-    search_fields = (
-        "name",
-        "description",
-    )
-
-@admin.register(Document)
-class DocumentAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "description",
-        "detailed_information",
-        "created_at",
-    )
-    list_filter = (
-        "name",
-        "description",
-    )
-    search_fields = (
-        "name",
-        "description",
-    )
-
-@admin.register(Visit_place)
-class Visit_placeAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "description",
-        "detailed_information",
-        "created_at",
-    )
-    list_filter = (
-        "name",
-        "description",
-    )
-    search_fields = (
-        "name",
-        "description",
     )

@@ -4,12 +4,27 @@ from datetime import date
 
 class Announcement(CommonModel):
 
-    name = models.CharField(
+    title = models.CharField(
         max_length=180,
         default="",
     )
 
-    responsible_person = models.ForeignKey(
+    subtitle = models.CharField(
+        max_length=180,
+        default="",
+    )
+
+    contents = models.CharField(
+        max_length=180,
+        default="",
+    )
+
+    detailed_information = models.CharField(
+        max_length=180,
+        default="",
+    )
+
+    responsible_person = models.ManyToManyField(
         "users.User",
         on_delete=models.CASCADE,
         related_name="announcements",
@@ -19,7 +34,6 @@ class Announcement(CommonModel):
     class SubjectChoices(models.TextChoices):
         WORK_PERMITS = ("work_permits", "Work permits")
         REAL_ESTATE_AGENTS = ("real_estate_agents", "Real estate agents")
-        PICK_UPS = ("pick_ups", "Pick ups")
         MOVING_COMPANIES = ("moving_companies", "Moving companies")
         MOVING = ("moving", "Moving")
         HOUSES = ("houses", "Houses")
@@ -40,80 +54,9 @@ class Announcement(CommonModel):
     finish_date = models.DateField(("Finish date"), default=date.today)
     finish_time = models.TimeField(("Finish time"), default="19:00")
 
-    explanations = models.ManyToManyField(
-        "announcements.Explanation",
-        related_name="announcements",
-    )
-    documents = models.ManyToManyField(
-        "announcements.Document",
-        related_name="announcements",
-    )
-    visit_places = models.ManyToManyField(
-        "announcements.Visit_place",
-        related_name="announcements",
-    )
-
 
     def __str__(self):
         return "Announcement"
     
     class Meta:
         verbose_name_plural = "Announcements"
-    
-class Explanation(CommonModel):
-    name = models.CharField(
-        max_length=180,
-        default="",
-    ) 
-    description = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    detailed_information = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    def __str__(self) -> str:
-        return self.name
-    class Meta:
-        verbose_name_plural = "Explanations"
-    
-class Document(CommonModel):
-    name = models.CharField(
-        max_length=180,
-    )
-    description = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    detailed_information = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    def __str__(self) -> str:
-        return self.name
-    class Meta:
-        verbose_name_plural = "Documents"
-
-class Visit_place(CommonModel):
-    name = models.CharField(
-        max_length=180,
-    )
-    description = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    detailed_information = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    def __str__(self) -> str:
-        return self.name
-    class Meta:
-        verbose_name_plural = "Visit places"
