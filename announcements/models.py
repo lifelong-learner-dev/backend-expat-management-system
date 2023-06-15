@@ -24,7 +24,7 @@ class Announcement(CommonModel):
         default="",
     )
 
-    responsible_person = models.ManyToManyField(
+    responsible_person = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,
         related_name="announcements",

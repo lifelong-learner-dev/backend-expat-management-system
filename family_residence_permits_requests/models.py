@@ -62,54 +62,7 @@ class Family_residence_permits_request(CommonModel):
         choices=FamilyChoices.choices,
         blank=True,)
 
-    explanations = models.ManyToManyField(
-        "family_residence_permits_requests.Explanation",
-        related_name="family_residence_permits_requests",
-    )
-    documents = models.ManyToManyField(
-        "family_residence_permits_requests.Document",
-        related_name="family_residence_permits_requests",
-    )
     def __str__(self) -> str:
         return self.name
     class Meta:
         verbose_name_plural = "Family residence permits requests"
-    
-class Explanation(CommonModel):
-    name = models.CharField(
-        max_length=180,
-        default="",
-    ) 
-    description = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    detailed_information = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    def __str__(self) -> str:
-        return self.name
-    class Meta:
-        verbose_name_plural = "Explanations"
-    
-class Document(CommonModel):
-    name = models.CharField(
-        max_length=180,
-    )
-    description = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    detailed_information = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    def __str__(self) -> str:
-        return self.name
-    class Meta:
-        verbose_name_plural = "Documents"

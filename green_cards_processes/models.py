@@ -2,7 +2,7 @@ from django.db import models
 from common.models import CommonModel
 from datetime import date
 
-class Company_car(CommonModel):
+class Green_cards_process(CommonModel):
 
     title = models.CharField(
         max_length=180,
@@ -161,12 +161,12 @@ class Company_car(CommonModel):
     responsible_person = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,
-        related_name="company_cars",
+        related_name="green_cards_processes",
         default="",
     )
 
     def __str__(self):
-        return "Company car"
+        return "Green cards process"
     
     class Meta:
-        verbose_name_plural = "Company cars"
+        verbose_name_plural = "Green cards processes"

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Driving_license, Explanation, Document, Visit_place
+from .models import Driving_license
 
 @admin.register(Driving_license)
 class Driving_licenseAdmin(admin.ModelAdmin):

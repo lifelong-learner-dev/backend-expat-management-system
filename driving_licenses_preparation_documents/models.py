@@ -17,15 +17,6 @@ class Driving_licenses_preparation_document(CommonModel):
 
     is_english_driving_license = models.BooleanField(default=False)
 
-    class EnbacktypeChoices(models.TextChoices):
-        DRIVERS_LICENSE_TEST_ADMINISTRATION = ("drivers_license_test_administration", "Driver's license test administration")
-        ROAD_TRAFFIC_AUTHORITY = ("road_traffic_authority", "Road traffic authority")
-        
-    enbacktype = models.CharField(
-        max_length=50,
-        choices=EnbacktypeChoices.choices,
-        blank=True,)
-
     class KrbacktypeChoices(models.TextChoices):
         DRIVERS_LICENSE_TEST_ADMINISTRATION = ("drivers_license_test_administration", "운전면허시험관리단")
         ROAD_TRAFFIC_AUTHORITY = ("road_traffic_authority", "도로교통공단")

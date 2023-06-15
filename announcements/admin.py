@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Announcement, Explanation, Document, Visit_place
+from .models import Announcement
 
 @admin.register(Announcement)
 class AnnouncementAdmin(admin.ModelAdmin):

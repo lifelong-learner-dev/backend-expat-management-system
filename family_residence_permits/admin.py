@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Family_residence_permit, Explanation, Document, Visit_place
+from .models import Family_residence_permit
 
 @admin.register(Family_residence_permit)
 class Family_residence_permitAdmin(admin.ModelAdmin):
@@ -24,55 +24,4 @@ class Family_residence_permitAdmin(admin.ModelAdmin):
     search_fields = (
         "name",
         "expat",
-    )
-
-@admin.register(Explanation)
-class ExplanationAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "description",
-        "detailed_information",
-        "created_at",
-    )
-    list_filter = (
-        "name",
-        "description",
-    )
-    search_fields = (
-        "name",
-        "description",
-    )
-
-@admin.register(Document)
-class DocumentAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "description",
-        "detailed_information",
-        "created_at",
-    )
-    list_filter = (
-        "name",
-        "description",
-    )
-    search_fields = (
-        "name",
-        "description",
-    )
-
-@admin.register(Visit_place)
-class Visit_placeAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "description",
-        "detailed_information",
-        "created_at",
-    )
-    list_filter = (
-        "name",
-        "description",
-    )
-    search_fields = (
-        "name",
-        "description",
     )

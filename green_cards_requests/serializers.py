@@ -29,7 +29,7 @@ class Green_cards_requestListSerializer(ModelSerializer):
 
     class Meta:
         model = Green_cards_request
-        fields = ("pk", "name", "expat", "is_expat", "create_at", "updated_at",)
+        fields = ("pk", "name", "expat", "is_expat", "available_countries", "create_at", "updated_at",)
 
     def get_is_expat(self, green_cards_request):
         request = self.context.get("request")

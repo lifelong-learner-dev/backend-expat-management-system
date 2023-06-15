@@ -8,7 +8,7 @@ class Work_permit(CommonModel):
         max_length=180,
         default="",
     )
-    expat = models.ManyToManyField(
+    expat = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,
         related_name="work_permits",
