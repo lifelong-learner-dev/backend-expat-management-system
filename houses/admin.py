@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import House, Clause, Explanation, Regulation
+from .models import House
 
 @admin.register(House)
 class HouseAdmin(admin.ModelAdmin):
@@ -15,52 +15,4 @@ class HouseAdmin(admin.ModelAdmin):
     )
     search_fields = (
         "name",
-    )
-@admin.register(Clause)
-class ClauseAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "krclause",
-        "trclause",
-        "created_at",
-    )
-    list_filter = (
-        "name",
-    )
-    search_fields = (
-        "name",
-    )
-
-@admin.register(Explanation)
-class ExplanationAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "description",
-        "detailed_information",
-        "created_at",
-    )
-    list_filter = (
-        "name",
-        "description",
-    )
-    search_fields = (
-        "name",
-        "description",
-    )
-
-@admin.register(Regulation)
-class RegulationAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "description",
-        "detailed_information",
-        "created_at",
-    )
-    list_filter = (
-        "name",
-        "description",
-    )
-    search_fields = (
-        "name",
-        "description",
     )

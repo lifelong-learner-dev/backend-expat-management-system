@@ -60,6 +60,7 @@ CUSTOM_APPS = [
     "green_cards_requests.apps.GreenCardsRequestsConfig",
     "house_rent_extensions.apps.HouseRentExtensionsConfig",
     "houses.apps.HousesConfig",
+    "houses.apps.HousesProcessesConfig",
     "moving.apps.MovingConfig",
     "moving_companies.apps.MovingCompaniesConfig",
     "moving_requests.apps.MovingRequestsConfig",

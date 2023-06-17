@@ -2,7 +2,8 @@ from django.db import models
 from common.models import CommonModel
 from datetime import date
 
-class Moving(CommonModel):
+class Houses_process(CommonModel):
+
     title = models.CharField(
         max_length=180,
         default="",
@@ -160,12 +161,12 @@ class Moving(CommonModel):
     responsible_person = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,
-        related_name="moving",
+        related_name="houses_processes",
         default="",
     )
-    
+
     def __str__(self):
-        return "Moving"
+        return "Houses process"
     
     class Meta:
-        verbose_name_plural = "Moving"
+        verbose_name_plural = "Houses processes"

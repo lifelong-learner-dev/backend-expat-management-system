@@ -33,90 +33,9 @@ class House(CommonModel):
         choices=CurrencyChoices.choices,
         blank=True,
     )
-
-    clauses = models.ManyToManyField(
-        "houses.Clause",
-        related_name="houses",
-    )
-
-    explanations = models.ManyToManyField(
-        "houses.Explanation",
-        related_name="houses",
-    )
-
-    def total_explanations(house):
-        return house.explanations.count()
-
-    regulations = models.ManyToManyField(
-        "houses.Regulation",
-        related_name="houses",
-    )
-
-    def total_regulations(house):
-        return house.regulations.count()
     
     def __str__(self):
         return "House"
     
     class Meta:
         verbose_name_plural = "Houses"
-
-class Clause(CommonModel):
-    name = models.CharField(
-        max_length=180,
-        default="",
-    ) 
-    krclause = models.CharField(
-        max_length=500,
-        null=True,
-        blank=True,
-    )
-    trclause = models.CharField(
-        max_length=500,
-        null=True,
-        blank=True,
-    )
-    def __str__(self) -> str:
-        return self.name
-    class Meta:
-        verbose_name_plural = "Clauses"
-
-class Explanation(CommonModel):
-    name = models.CharField(
-        max_length=180,
-        default="",
-    ) 
-    description = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    detailed_information = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    def __str__(self) -> str:
-        return self.name
-    class Meta:
-        verbose_name_plural = "Explanations"
-    
-class Regulation(CommonModel):
-    name = models.CharField(
-        max_length=180,
-        default="",
-    ) 
-    description = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    detailed_information = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    def __str__(self) -> str:
-        return self.name
-    class Meta:
-        verbose_name_plural = "Regulations"

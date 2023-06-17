@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import Moving, Explanation
+from .models import Moving
 
 @admin.register(Moving)
 class MovingAdmin(admin.ModelAdmin):
     list_display = (
-        "name",
-        "total_explanations",
+        "title",
+        "subtitle",
         "created_at",
         "updated_at",
     )
@@ -14,21 +14,4 @@ class MovingAdmin(admin.ModelAdmin):
     )
     search_fields = (
         "name",
-    )
-
-@admin.register(Explanation)
-class ExplanationAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "description",
-        "detailed_information",
-        "created_at",
-    )
-    list_filter = (
-        "name",
-        "description",
-    )
-    search_fields = (
-        "name",
-        "description",
     )
