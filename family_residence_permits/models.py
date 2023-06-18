@@ -91,6 +91,31 @@ class Family_residence_permit(CommonModel):
         max_length=150,
         choices=EnstatusChoices.choices,
         default=EnstatusChoices.NOT_APPLIIED,)
+
+
+    def save(self, *args, **kwargs):
+        mapping = {
+                self.EnstatusChoices.NOT_APPLIIED: self.KrstatusChoices.NOT_APPLIIED,
+                self.EnstatusChoices.APPLICATIONNEEDED: self.KrstatusChoices.APPLICATIONNEEDED,
+                self.EnstatusChoices.ANNOUNCEDREQUIREDDOCUMENTS: self.KrstatusChoices.ANNOUNCEDREQUIREDDOCUMENTS,
+                self.EnstatusChoices.DOCUMENT_DELIVERED: self.KrstatusChoices.DOCUMENT_DELIVERED,
+                self.EnstatusChoices.TRANSLATION: self.KrstatusChoices.TRANSLATION,
+                self.EnstatusChoices.NOTARIZATION: self.KrstatusChoices.NOTARIZATION,
+                self.EnstatusChoices.APPLIED: self.KrstatusChoices.APPLIED,
+                self.EnstatusChoices.WAITINGFORINTERVIEWDATE: self.KrstatusChoices.WAITINGFORINTERVIEWDATE,
+                self.EnstatusChoices.ANNOUNCEDINTERVIEWDATE: self.KrstatusChoices.ANNOUNCEDINTERVIEWDATE,
+                self.EnstatusChoices.INTERVIEWCOMPLETED: self.KrstatusChoices.INTERVIEWCOMPLETED,
+                self.EnstatusChoices.REVISITNEEDED: self.KrstatusChoices.REVISITNEEDED,
+                self.EnstatusChoices.REVISITCOMPLETED: self.KrstatusChoices.REVISITCOMPLETED,
+                self.EnstatusChoices.WAITINGFORAPPROVAL: self.KrstatusChoices.WAITINGFORAPPROVAL,
+                self.EnstatusChoices.APPROVEDANDWAITFORCARD: self.KrstatusChoices.APPROVEDANDWAITFORCARD,
+                self.EnstatusChoices.CARDDELIVEREDPHOTONEEDED: self.KrstatusChoices.CARDDELIVEREDPHOTONEEDED,
+                self.EnstatusChoices.POSTOFFICEVISITNEEDED: self.KrstatusChoices.POSTOFFICEVISITNEEDED,
+                self.EnstatusChoices.COMPLETED: self.KrstatusChoices.COMPLETED,
+        }
+        self.krstatus = mapping.get(self.enstatus, '')
+        super().save(*args, **kwargs)
+
     
     interview_place = models.CharField(
         max_length=180,
@@ -99,6 +124,11 @@ class Family_residence_permit(CommonModel):
 
     interview_date = models.DateField(("Interview date"), default=date.today)
     interview_time = models.TimeField(("Interview time"), default="19:00")
+
+    post_office = models.CharField(
+        max_length=180,
+        default="",
+    )
 
     def __str__(self):
         return "Family residence permit"

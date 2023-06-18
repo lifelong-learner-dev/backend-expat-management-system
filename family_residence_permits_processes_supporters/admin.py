@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Work_permits_process
+from .models import Family_residence_permits_processes_supporter
 
-@admin.register(Work_permits_process)
-class Work_permits_processAdmin(admin.ModelAdmin):
+@admin.register(Family_residence_permits_processes_supporter)
+class Family_residence_permits_processes_supporterAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "responsible_person",

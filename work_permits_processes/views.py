@@ -11,49 +11,49 @@ from rest_framework.exceptions import (
     ParseError,
     PermissionDenied,
 )
-from .models import Real_estate_agent
-from .serializers import Real_estate_agentDetailSerializer, Real_estate_agentListSerializer
+from .models import Work_permits_process
+from .serializers import Work_permits_processDetailSerializer, Work_permits_processListSerializer
 
-class Real_estate_agents(APIView):
+class Work_permits_processes(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     
     def get(self, request):
-        all_real_estate_agents = Real_estate_agent.objects.all()
-        serializer = Real_estate_agentListSerializer(all_real_estate_agents, many=True, context={"request": request},)
+        all_work_permits_processes = Work_permits_process.objects.all()
+        serializer = Work_permits_processListSerializer(all_work_permits_processes, many=True, context={"request": request},)
         return Response(serializer.data)
     
     def post(self, request):
-        serializer = Real_estate_agentDetailSerializer(data=request.data)
+        serializer = Work_permits_processDetailSerializer(data=request.data)
         if request.user.is_support and request.user.is_houses and serializer.is_valid():
-                    real_estate_agent = serializer.save()   
-                    serializer = Real_estate_agentDetailSerializer(real_estate_agent, context={"request": request},)
+                    work_permits_process = serializer.save()   
+                    serializer = Work_permits_processDetailSerializer(work_permits_process, context={"request": request},)
                     return Response(serializer.data)
         else:
             return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
     
-class Real_estate_agentDetail(APIView):
+class Work_permits_processDetail(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_object(self, pk):
         try: 
-            return Real_estate_agent.objects.get(pk=pk)
-        except Real_estate_agent.DoesNotExist:
+            return Work_permits_process.objects.get(pk=pk)
+        except Work_permits_process.DoesNotExist:
             raise NotFound
     
     def get(self, request, pk):
-        real_estate_agent = self.get_object(pk)
-        serializer = Real_estate_agentDetailSerializer(real_estate_agent, context={"request": request},)
+        work_permits_process = self.get_object(pk)
+        serializer = Work_permits_processDetailSerializer(work_permits_process, context={"request": request},)
         return Response(serializer.data)
 
     def put(self, request, pk):
-        real_estate_agent = self.get_object(pk)
+        work_permits_process = self.get_object(pk)
         if not request.user.is_supporter and not request.user.is_houses:
             raise PermissionDenied
         return Response()
 
     def delete(self, request, pk):
-        real_estate_agent = self.get_object(pk)
+        work_permits_process = self.get_object(pk)
         if not request.user.is_supporter and not request.user.is_houses:
             raise PermissionDenied
-        real_estate_agent.delete()
+        work_permits_process.delete()
         return Response(status=HTTP_204_NO_CONTENT)

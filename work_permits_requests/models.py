@@ -45,6 +45,18 @@ class Work_permits_request(CommonModel):
         choices=EnstatusChoices.choices,
         blank=True,)
 
+    def save(self, *args, **kwargs):
+        mapping = {
+                self.EnstatusChoices.INFORMED: self.KrstatusChoices.INFORMED,
+                self.EnstatusChoices.CHECKED: self.KrstatusChoices.CHECKED,
+                self.EnstatusChoices.REAPPLIED: self.KrstatusChoices.REAPPLIED,
+                self.EnstatusChoices.WAITINGFORAPPROVAL: self.KrstatusChoices.WAITINGFORAPPROVAL,
+                self.EnstatusChoices.APPROVEDANDWAITFORCARD: self.KrstatusChoices.APPROVEDANDWAITFORCARD,
+                self.EnstatusChoices.COMPLETED: self.KrstatusChoices.COMPLETED,
+        }
+        self.krstatus = mapping.get(self.enstatus, '')
+        super().save(*args, **kwargs)
+
     def __str__(self) -> str:
         return self.name
     class Meta:

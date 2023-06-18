@@ -38,7 +38,6 @@ class Driving_license(CommonModel):
         COMPLETED_HOUSE_ADDRESS_REGISTRATION = ("completed_house_address_registration", "거주증 등록 완료")
         ANNOUNCEMENT_FIRST_VISIT_SCHEDULE = ("announcement_first_visit_schedule", "인구시민청 첫방문 관련 공지")
         FIRST_VISIT = ("first_visit", "첫번째 방문")
-        PLEASE_VISIT_HOSPITAL_FOR_HEALTH_REPORT = ("please_visit_hospital_for_health_report", "건강진단서를 위해 병원을 방문하세요")
         PLEASE_PAY_DRIVING_LICENSE_EXCHANGE_COST = ("please_pay_driving_license_exchange_cost", "운전면허증 교환 수수료를 납부하세요")
         ANNOUNCEMENT_SECOND_VISIT_SCHEDULE = ("announcement_second_visit_schedule", "인구시민청 두번째방문 관련 공지")
         SECOND_VISIT = ("second_visit", "두번째 방문")
@@ -47,10 +46,59 @@ class Driving_license(CommonModel):
         APPROVEDANDWAITFORCARD = ("approvedandwaitforcard", "승인됨 카드 발급 대기 중")
         COMPLETED = ("completed", "카드 발급 및 전달 완료, 모든 절차 완료")
 
+    class EnstatusChoices(models.TextChoices):
+        PLEASE_SEND_SCANNED_KOREAN_DRIVING_LICENSE = ("please_send_scanned_korean_driving_license", "Please send scanned Korean driving license")
+        ONGOING_KOREAN_DRIVING_LICENSE_TRANSLATION = ("ongoing_korean_driving_license_translation", "Korean driving license translation in progress")
+        COMPLETED_NOTARIZATION_KOREAN_DRIVING_LICENSE_TRANSLATION = ("completed_notarization_korean_driving_license_translation", "Korean driving license translation has been completed and notarized")
+        PLEASE_SEND_SCANNED_GRADUATION_CERTIFICATE = ("please_send_scanned_graduation_certificate", "Please send scanned graduation certificate")
+        ONGOING_GRADUATION_CERTIFICATE_TRANSLATION = ("ongoing_graduation_certificate_translation", "Graduation certificate translation in progress")
+        COMPLETED_NOTARIZATION_GRADUATION_CERTIFICATE_TRANSLATION = ("completed_notarization_graduation_certificate_translation", "Graduation certificate translation has been completed and notarized")
+        PLEASE_VISIT_POST_OFFICE = ("please_visit_post_office", "Please visit post office for issuing e-devlet password")
+        ONGOING_HOUSE_ADDRESS_REGISTRATION = ("ongoing_house_address_registration", "House address registration in progress")
+        COMPLETED_HOUSE_ADDRESS_REGISTRATION = ("completed_house_address_registration", "House address registration has been completed")
+        ANNOUNCEMENT_FIRST_VISIT_SCHEDULE = ("announcement_first_visit_schedule", "Announcement of the schedule for the first visit to the registration office")
+        FIRST_VISIT = ("first_visit", "First visit")
+        PLEASE_PAY_DRIVING_LICENSE_EXCHANGE_COST = ("please_pay_driving_license_exchange_cost", "Please pay driving license exchange cost")
+        ANNOUNCEMENT_SECOND_VISIT_SCHEDULE = ("announcement_second_visit_schedule", "Announcement of the schedule for the second visit to the registration office")
+        SECOND_VISIT = ("second_visit", "Second visit")
+        REVISIT_NEEDED = ("revisit_needed", "Revisit needed")
+        TEMPORARY_CARD = ("temporary_card", "Temporary card has been issued")
+        APPROVEDANDWAITFORCARD = ("approvedandwaitforcard", "Approved and waiting for issuing card")
+        COMPLETED = ("completed", "Card issued and sent it to you. All processes are completed.")
+
     krstatus = models.CharField(
         max_length=500,
         choices=KrstatusChoices.choices,
         default=KrstatusChoices.PLEASE_SEND_SCANNED_KOREAN_DRIVING_LICENSE,)
+
+    enstatus = models.CharField(
+        max_length=500,
+        choices=EnstatusChoices.choices,
+        default=EnstatusChoices.PLEASE_SEND_SCANNED_KOREAN_DRIVING_LICENSE,)
+
+    def save(self, *args, **kwargs):
+        mapping = {
+                self.EnstatusChoices.PLEASE_SEND_SCANNED_KOREAN_DRIVING_LICENSE: self.KrstatusChoices.PLEASE_SEND_SCANNED_KOREAN_DRIVING_LICENSE,
+                self.EnstatusChoices.ONGOING_KOREAN_DRIVING_LICENSE_TRANSLATION: self.KrstatusChoices.ONGOING_KOREAN_DRIVING_LICENSE_TRANSLATION,
+                self.EnstatusChoices.COMPLETED_NOTARIZATION_KOREAN_DRIVING_LICENSE_TRANSLATION: self.KrstatusChoices.COMPLETED_NOTARIZATION_KOREAN_DRIVING_LICENSE_TRANSLATION,
+                self.EnstatusChoices.PLEASE_SEND_SCANNED_GRADUATION_CERTIFICATE: self.KrstatusChoices.PLEASE_SEND_SCANNED_GRADUATION_CERTIFICATE,
+                self.EnstatusChoices.ONGOING_GRADUATION_CERTIFICATE_TRANSLATION: self.KrstatusChoices.ONGOING_GRADUATION_CERTIFICATE_TRANSLATION,
+                self.EnstatusChoices.COMPLETED_NOTARIZATION_GRADUATION_CERTIFICATE_TRANSLATION: self.KrstatusChoices.COMPLETED_NOTARIZATION_GRADUATION_CERTIFICATE_TRANSLATION,
+                self.EnstatusChoices.PLEASE_VISIT_POST_OFFICE: self.KrstatusChoices.PLEASE_VISIT_POST_OFFICE,
+                self.EnstatusChoices.ONGOING_HOUSE_ADDRESS_REGISTRATION: self.KrstatusChoices.ONGOING_HOUSE_ADDRESS_REGISTRATION,
+                self.EnstatusChoices.COMPLETED_HOUSE_ADDRESS_REGISTRATION: self.KrstatusChoices.COMPLETED_HOUSE_ADDRESS_REGISTRATION,
+                self.EnstatusChoices.ANNOUNCEMENT_FIRST_VISIT_SCHEDULE: self.KrstatusChoices.ANNOUNCEMENT_FIRST_VISIT_SCHEDULE,
+                self.EnstatusChoices.FIRST_VISIT: self.KrstatusChoices.FIRST_VISIT,
+                self.EnstatusChoices.PLEASE_PAY_DRIVING_LICENSE_EXCHANGE_COST: self.KrstatusChoices.PLEASE_PAY_DRIVING_LICENSE_EXCHANGE_COST,
+                self.EnstatusChoices.ANNOUNCEMENT_SECOND_VISIT_SCHEDULE: self.KrstatusChoices.ANNOUNCEMENT_SECOND_VISIT_SCHEDULE,
+                self.EnstatusChoices.SECOND_VISIT: self.KrstatusChoices.SECOND_VISIT,
+                self.EnstatusChoices.REVISIT_NEEDED: self.KrstatusChoices.REVISIT_NEEDED,
+                self.EnstatusChoices.TEMPORARY_CARD: self.KrstatusChoices.TEMPORARY_CARD,
+                self.EnstatusChoices.APPROVEDANDWAITFORCARD: self.KrstatusChoices.APPROVEDANDWAITFORCARD,
+                self.EnstatusChoices.COMPLETED: self.KrstatusChoices.COMPLETED,
+        }
+        self.krstatus = mapping.get(self.enstatus, '')
+        super().save(*args, **kwargs)
 
     class FamilyChoices(models.TextChoices):
         EXPAT = ("expat", "Expat")

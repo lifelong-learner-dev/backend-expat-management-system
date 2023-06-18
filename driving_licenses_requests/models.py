@@ -61,6 +61,16 @@ class Driving_licenses_request(CommonModel):
         choices=EnstatusChoices.choices,
         default=EnstatusChoices.INFORMED,)
 
+    def save(self, *args, **kwargs):
+        mapping = {
+                self.EnstatusChoices.INFORMED: self.KrstatusChoices.INFORMED,
+                self.EnstatusChoices.CHECKED: self.KrstatusChoices.CHECKED,
+                self.EnstatusChoices.ANNOUNCEMENT_VISIT_SCHEDULE: self.KrstatusChoices.ANNOUNCEMENT_VISIT_SCHEDULE,
+                self.EnstatusChoices.APPROVEDANDWAITFORCARD: self.KrstatusChoices.APPROVEDANDWAITFORCARD,
+                self.EnstatusChoices.COMPLETED: self.KrstatusChoices.COMPLETED,
+        }
+        self.krstatus = mapping.get(self.enstatus, '')
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return "Driving licenses request"

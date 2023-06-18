@@ -61,6 +61,14 @@ class Moving_request(CommonModel):
         choices=EnsituationsChoices.choices,
         blank=True,)
 
+    def save(self, *args, **kwargs):
+        mapping = {
+                self.EnsituationsChoices.DOMESTIC: self.KrsituationsChoices.DOMESTIC,
+                self.EnsituationsChoices.OVERSEAS: self.KrsituationsChoices.OVERSEAS,
+        }
+        self.krsituation = mapping.get(self.ensituation, '')
+        super().save(*args, **kwargs)
+
     krstatus = models.CharField(
         max_length=150,
         choices=KrstatusChoices.choices,
@@ -71,6 +79,15 @@ class Moving_request(CommonModel):
         choices=EnstatusChoices.choices,
         blank=True,)
 
+    def save(self, *args, **kwargs):
+        mapping = {
+                self.EnstatusChoices.REQUEST_SUBMITTED: self.KrstatusChoices.REQUEST_SUBMITTED,
+                self.EnstatusChoices.CHECKED: self.KrstatusChoices.CHECKED,
+                self.EnstatusChoices.ARRANGED: self.KrstatusChoices.ARRANGED,
+        }
+        self.krstatus = mapping.get(self.enstatus, '')
+        super().save(*args, **kwargs)
+
     krreceiver = models.CharField(
         max_length=150,
         choices=KrreceiverChoices.choices,
@@ -80,6 +97,14 @@ class Moving_request(CommonModel):
         max_length=150,
         choices=EnreceiverChoices.choices,
         blank=True,)
+
+    def save(self, *args, **kwargs):
+        mapping = {
+                self.EnreceiverChoices.EXPAT: self.KrreceiverChoices.EXPAT,
+                self.EnreceiverChoices.SPOUSE: self.KrreceiverChoices.SPOUSE,
+        }
+        self.krreceiver = mapping.get(self.enreceiver, '')
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return self.name

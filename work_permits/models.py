@@ -50,34 +50,9 @@ class Work_permit(CommonModel):
         self.krstatus = mapping.get(self.enstatus, '')
         super().save(*args, **kwargs)
 
-    explanations = models.ManyToManyField(
-        "work_permits.Explanation",
-        related_name="work_permits",
-    )
-
     class Meta:
         verbose_name_plural = "Work permits"
     
     def __str__(self) -> str:
         return self.name
-
-class Explanation(CommonModel):
-    name = models.CharField(
-        max_length=180,
-        default="",
-    ) 
-    description = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    detailed_information = models.CharField(
-        max_length=250,
-        null=True,
-        blank=True,
-    )
-    def __str__(self) -> str:
-        return self.name
-    class Meta:
-        verbose_name_plural = "Explanations"
     

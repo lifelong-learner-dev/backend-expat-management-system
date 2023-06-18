@@ -2,7 +2,8 @@ from django.db import models
 from common.models import CommonModel
 from datetime import date
 
-class Work_permits_process(CommonModel):
+class Company_cars_supporter(CommonModel):
+
     title = models.CharField(
         max_length=180,
         default="",
@@ -157,14 +158,8 @@ class Work_permits_process(CommonModel):
         default="",
     )
 
-    responsible_person = models.ForeignKey(
-        "users.User",
-        on_delete=models.CASCADE,
-        related_name="work_permits_processes",
-        default="",
-    )
-
-    def __str__(self) -> str:
-        return self.name
+    def __str__(self):
+        return "Company cars supporter"
+    
     class Meta:
-        verbose_name_plural = "Work_permits_processes"
+        verbose_name_plural = "Company cars supporters"

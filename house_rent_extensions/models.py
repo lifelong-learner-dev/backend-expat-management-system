@@ -62,6 +62,15 @@ class House_rent_extension(CommonModel):
         blank=True,
     )
 
+    def save(self, *args, **kwargs):
+        mapping = {
+                self.EnstatusChoices.LANDLORD_REQUESTED: self.KrstatusChoices.LANDLORD_REQUESTED,
+                self.EnstatusChoices.NEGOTIATION: self.KrstatusChoices.NEGOTIATION,
+                self.EnstatusChoices.COMPLETED: self.KrstatusChoices.COMPLETED,
+        }
+        self.krstatus = mapping.get(self.enstatus, '')
+        super().save(*args, **kwargs)
+
     def __str__(self) -> str:
         return self.name
         
