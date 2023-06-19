@@ -158,6 +158,13 @@ class Company_cars_supporter(CommonModel):
         default="",
     )
 
+    responsible_person = models.ForeignKey(
+        "users.User",
+        on_delete=models.CASCADE,
+        related_name="company_cars_supporters",
+        default="",
+    )
+
     def __str__(self):
         return "Company cars supporter"
     
