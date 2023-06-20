@@ -44,6 +44,7 @@ THIRD_PARTY_APPS = [
 
 CUSTOM_APPS = [
     "additional_information.apps.Additional_informationConfig",
+    "additional_information_supporters.apps.AdditionalInformationSupportersConfig",
     "announcements.apps.AnnouncementsConfig",
     "common.apps.CommonConfig",
     "company_cars.apps.CompanyCarsConfig",
@@ -52,6 +53,7 @@ CUSTOM_APPS = [
     "driving_licenses_processes.apps.DrivingLicensesProcessesConfig",
     "driving_licenses.apps.DrivingLicensesConfig",
     "driving_licenses_requests.apps.DrivingLicensesRequestsConfig",
+    "driving_licenses_supporters.apps.DrivingLicensesSupportersConfig",
     "family_residence_permits.apps.Family_residence_permitsConfig",
     "family_residence_permits_preparation_documents.apps.FamilyResidencePermitsPreparationDocumentsConfig",
     "family_residence_permits_processes.apps.FamilyResidencePermitsProcessesConfig",
@@ -61,9 +63,11 @@ CUSTOM_APPS = [
     "green_cards_preparation_documents.apps.GreenCardsPreparationDocumentsConfig",
     "green_cards_processes.apps.GreenCardsProcessesConfig",
     "green_cards_requests.apps.GreenCardsRequestsConfig",
+    "green_cards_supporters.apps.GreenCardsSupportersConfig",
     "house_rent_extensions.apps.HouseRentExtensionsConfig",
     "houses.apps.HousesConfig",
     "houses_processes.apps.HousesProcessesConfig",
+    "houses_supporters.apps.HousesSupportersConfig",
     "moving.apps.MovingConfig",
     "moving_companies.apps.MovingCompaniesConfig",
     "moving_requests.apps.MovingRequestsConfig",

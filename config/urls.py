@@ -25,11 +25,13 @@ urlpatterns = [
     path('api/v1/real_estate_agents/', include('real_estate_agents.urls')),
     path('api/v1/house_rent_extensions/', include('house_rent_extensions.urls')),
     path('api/v1/houses/', include('houses.urls')),
+    path('api/v1/houses_supporters/', include('houses_supporters.urls')),
     path('api/v1/houses_processes/', include('houses_processes.urls')),
     path('api/v1/moving/', include('moving.urls')),
     path('api/v1/moving_requests/', include('moving_requests.urls')),
     path('api/v1/moving_preparation_documents/', include('moving_preparation_documents.urls')),
     path('api/v1/moving_companies/', include('moving_companies.urls')),
+    path('api/v1/green_cards_supporters/', include('green_cards_supporters.urls')),
     path('api/v1/green_cards_requests/', include('green_cards_requests.urls')),
     path('api/v1/green_cards_processes/', include('green_cards_processes.urls')),
     path('api/v1/green_cards_preparation_documents/', include('green_cards_preparation_documents.urls')),
@@ -46,6 +48,7 @@ urlpatterns = [
     path('api/v1/company_cars_supporters/', include('company_cars_supporters.urls')),
     path('api/v1/company_cars/', include('company_cars.urls')),
     path('api/v1/announcements/', include('announcements.urls')),
+    path('api/v1/additional_information_supporters/', include('additional_information_supporters.urls')),
     path('api/v1/additional_information/', include('additional_information.urls')),
 
 ]
