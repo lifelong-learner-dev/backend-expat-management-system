@@ -41,10 +41,10 @@ class Additional_informationAdmin(admin.ModelAdmin):
 
 
     list_filter = (
-        "name",
-        "subject",
+        "title",
+        "subtitle",
     )
     search_fields = (
-        "name",
-        "subject",
+        "title",
+        "subtitle",
     )

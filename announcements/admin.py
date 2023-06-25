@@ -4,7 +4,7 @@ from .models import Announcement
 @admin.register(Announcement)
 class AnnouncementAdmin(admin.ModelAdmin):
     list_display = (
-        "name",
+        "title",
         "subject",
         "start_date",
         "start_time",
@@ -14,10 +14,10 @@ class AnnouncementAdmin(admin.ModelAdmin):
     )
 
     list_filter = (
-        "name",
+        "title",
         "subject",
     )
     search_fields = (
-        "name",
+        "title",
         "subject",
     )

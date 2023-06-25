@@ -70,6 +70,7 @@ CUSTOM_APPS = [
     "houses_supporters.apps.HousesSupportersConfig",
     "moving.apps.MovingConfig",
     "moving_companies.apps.MovingCompaniesConfig",
+    "moving_supporters.apps.MovingSupportersConfig",
     "moving_requests.apps.MovingRequestsConfig",
     "moving_preparation_documents.apps.MovingPreparationDocumentsConfig",
     "real_estate_agents.apps.RealEstateAgentsConfig",
@@ -77,6 +78,7 @@ CUSTOM_APPS = [
     "work_permits.apps.WorkPermitsConfig",
     "work_permits_processes.apps.WorkPermitsProcessesConfig",
     "work_permits_requests.apps.WorkPermitsRequestsConfig",
+    "work_permits_supporters.apps.WorkPermitsSupportersConfig",
 ]
 
 SYSTEM_APPS = [

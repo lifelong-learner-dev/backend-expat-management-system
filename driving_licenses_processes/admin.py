@@ -10,10 +10,10 @@ class Driving_licenses_processAdmin(admin.ModelAdmin):
     )
 
     list_filter = (
-        "name",
+        "title",
         "responsible_person",
     )
     search_fields = (
-        "name",
+        "title",
         "responsible_person",
     )

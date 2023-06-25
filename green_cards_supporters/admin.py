@@ -10,10 +10,10 @@ class Green_cards_supporterAdmin(admin.ModelAdmin):
     )
 
     list_filter = (
-        "name",
+        "title",
         "responsible_person",
     )
     search_fields = (
-        "name",
+        "title",
         "responsible_person",
     )

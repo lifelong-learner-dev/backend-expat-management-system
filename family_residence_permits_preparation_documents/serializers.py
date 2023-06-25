@@ -12,4 +12,4 @@ class Family_residence_permits_preparation_documentListSerializer(ModelSerialize
     
     class Meta:
         model = Family_residence_permits_preparation_document
-        fields = ("pk", "name", "expat", "is_expat", "explanations", "documents", "created_at", "updated_at",)
+        fields = ("pk", "name", "expat", "is_expat", "created_at", "updated_at",)

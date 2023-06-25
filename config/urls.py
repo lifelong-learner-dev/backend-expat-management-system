@@ -19,6 +19,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/users/', include('users.urls')),
+    path('api/v1/work_permits_supporters/', include('work_permits_supporters.urls')),
     path('api/v1/work_permits_requests/', include('work_permits_requests.urls')),
     path('api/v1/work_permits_processes/', include('work_permits_processes.urls')),
     path('api/v1/work_permits/', include('work_permits.urls')),
@@ -29,6 +30,7 @@ urlpatterns = [
     path('api/v1/houses_processes/', include('houses_processes.urls')),
     path('api/v1/moving/', include('moving.urls')),
     path('api/v1/moving_requests/', include('moving_requests.urls')),
+    path('api/v1/moving_supporters/', include('moving_supporters.urls')),
     path('api/v1/moving_preparation_documents/', include('moving_preparation_documents.urls')),
     path('api/v1/moving_companies/', include('moving_companies.urls')),
     path('api/v1/green_cards_supporters/', include('green_cards_supporters.urls')),

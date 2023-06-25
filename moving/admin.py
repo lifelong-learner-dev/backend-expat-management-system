@@ -10,8 +10,8 @@ class MovingAdmin(admin.ModelAdmin):
         "updated_at",
     )
     list_filter = (
-        "name",
+        "title",
     )
     search_fields = (
-        "name",
+        "title",
     )
