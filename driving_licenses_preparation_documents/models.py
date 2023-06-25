@@ -47,25 +47,28 @@ class Driving_licenses_preparation_document(CommonModel):
     changed_address = models.CharField(
         max_length=180,
         default="",
+        blank=True,
     )
 
-    changed_date = models.DateField(("When did you change address?"), default=date.today)
+    changed_date = models.DateField(("When did you change address?"), default=date.today, blank=True,)
 
 
     two_changed_address = models.CharField(
         max_length=180,
         default="",
+        blank=True,
     )
 
-    two_changed_date = models.DateField(("When did you change address?"), default=date.today)
+    two_changed_date = models.DateField(("When did you change address?"), default=date.today, blank=True,)
 
 
     three_changed_address = models.CharField(
         max_length=180,
         default="",
+        blank=True,
     )
 
-    three_changed_date = models.DateField(("When did you change address?"), default=date.today)
+    three_changed_date = models.DateField(("When did you change address?"), default=date.today, blank=True,)
 
 
     driving_license_number = models.CharField(
@@ -91,10 +94,11 @@ class Driving_licenses_preparation_document(CommonModel):
     house_address = models.CharField(
         max_length=700,
         default="",
+        blank=True,
     )
 
-    typeone_renewal_date = models.DateField(("Type one renewal date"), default=date.today)
-    typetwo_renewal_date = models.DateField(("Type two renewal date"), default=date.today)
+    typeone_renewal_date = models.DateField(("Type one renewal date"), default=date.today, blank=True,)
+    typetwo_renewal_date = models.DateField(("Type two renewal date"), default=date.today, blank=True,)
 
     issued_date = models.DateField(("Issued date"), default=date.today)
     
