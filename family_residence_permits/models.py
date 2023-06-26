@@ -120,6 +120,7 @@ class Family_residence_permit(CommonModel):
     interview_place = models.CharField(
         max_length=180,
         default="",
+        blank=True,
     )
 
     interview_date = models.DateField(("Interview date"), default=date.today)
@@ -128,6 +129,7 @@ class Family_residence_permit(CommonModel):
     post_office = models.CharField(
         max_length=180,
         default="",
+        blank=True,
     )
 
     def __str__(self):

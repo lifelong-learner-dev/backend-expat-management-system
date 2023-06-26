@@ -36,7 +36,7 @@ class Work_permit(CommonModel):
 
     enstatus = models.CharField(
         max_length=150,
-        choices=KrstatusChoices.choices,
+        choices=EnstatusChoices.choices,
         blank=True,)
 
     def save(self, *args, **kwargs):

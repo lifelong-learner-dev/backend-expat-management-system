@@ -197,6 +197,6 @@ class Work_permits_process(CommonModel):
     )
 
     def __str__(self) -> str:
-        return self.name
+        return self.title
     class Meta:
         verbose_name_plural = "Work_permits_processes"
