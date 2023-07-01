@@ -22,8 +22,8 @@ class AnnouncementListSerializer(ModelSerializer):
 
     class Meta:
         model = Announcement
-        fields = ("pk", "name", "subject", "responsible_person", "is_responsible_person", "created_at", "updated_at",)
-
+        fields =  "__all__"
+        
     def get_is_responsible_person(self, announcement):
         request = self.context.get("request")
         return announcement.responsible_person == request.user
